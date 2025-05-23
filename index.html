@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>For Darling</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Great+Vibes&display=swap');
+
+        /* Reset */
+        * {
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body, html {
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #77001f;
+            position: relative;
+        }
+
+        /* Background subtle floating hearts */
+        .background-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 105, 180, 0.7);
+            transform: rotate(-45deg);
+            opacity: 0.7;
+            border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 105, 180, 0.7);
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -7.5px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 7.5px;
+            top: 0;
+        }
+
+        /* Login box container */
+        .login-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 35px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.5);
+            text-align: center;
+            max-width: 320px;
+            width: 100%;
+        }
+
+        .login-box h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #c70039;
+        }
+
+        .login-box input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            border: 2px solid #ff6384;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .login-box input[type="text"]:focus {
+            border-color: #c70039;
+        }
+
+        .login-box button {
+            background: #c70039;
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(199, 0, 57, 0.6);
+            transition: background-color 0.3s ease;
+        }
+
+        .login-box button:hover {
+            background-color: #ff2e63;
+        }
+
+        /* Greeting message container */
+        .greeting-container {
+            position: relative;
+            min-height: 100vh;
+            color: #c70039;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .greeting-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem; /* Increased font size */
+            margin-bottom: 20px; /* Space between title and message */
+            color: #c70039;
+            text-align: center; /* Center the title */
+        }
+
+        .greeting-message {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 2.1rem; /* Adjusted font size for the message */
+            letter-spacing: 0.03em;
+            max-width: 700px;
+            line-height: 1.6;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            text-align: center; /* Center the message */
+        }
+
+        /* Rose petals animation container */
+        .petals-container {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: visible;
+            z-index: 15;
+        }
+
+        .petal {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle at center, #e60039, #ff8aa6);
+            border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+            opacity: 0.85;
+            filter: drop-shadow(0 0 3px #ff4d7a);
+            animation: floatPetal 10s linear infinite;
+        }
+
+        @keyframes floatPetal {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(50vh) translateX(20px);
+            }
+            100% {
+                transform: translateY(100vh) translateX(-20px);
+            }
+        }
+
+        /* Play button styling */
+        .play-button {
+            background-color: #c70039;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(199, 0, 57, 0.6);
+            transition: background-color 0.3s ease;
+            margin: 20px auto;
+        }
+
+        .play-button:hover {
+            background-color: #ff2e63;
+        }
+
+        /* Iframe styling */
+        .music-player {
+            display: none; /* Hide the iframe initially */
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 500px) {
+            .login-box { padding: 30px 25px; }
+            .login-box h2 { font-size: 2.5rem; }
+            .greeting-message { font-size: 1.6rem; padding: 15px 20px; max-width: 90vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-hearts" aria-hidden="true"></div>
+    <div class="login-container" id="login-container">
+        <form class="login-box" id="login-form" aria-label="Login form">
+            <h2>Login</h2>
+            <input type="text" id="callsign-input" placeholder="Enter callsign" aria-required="true" />
+            <button type="submit" aria-label="Submit callsign">Submit</button>
+            <p id="error-msg" style="color:#c70039; margin-top: 10px; display:none;" role="alert"></p>
+        </form>
+    </div>
+    <div class="greeting-container" id="greeting-container" style="display:none;" tabindex="0">
+        <div class="greeting-title">Hi, Darling!</div>
+        <div class="greeting-message">
+            Just wanted to remind you how much you mean to me. Even on the busiest days, thoughts of you bring a smile to my heart. You're my calm in the chaos, my favorite person in every moment.
+        </div>
+        <div class="interactive-container" aria-label="Interactive romantic content">
+            <button class="play-button" onclick="playAudio()">Play Me</button>
+            <iframe class="music-player" id="audio-player" src="https://drive.google.com/file/d/1ttqlKhRuLLa9FbvL483dQ1AP7d3vUwgV/preview" width="350" height="50" allow="autoplay"></iframe>
+        </div>
+    </div>
+    <div class="petals-container" id="petals-container" aria-hidden="true"></div>
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const callsignInput = document.getElementById('callsign-input');
+        const errorMsg = document.getElementById('error-msg');
+        const loginContainer = document.getElementById('login-container');
+        const greetingContainer = document.getElementById('greeting-container');
+        const petalsContainer = document.getElementById('petals-container');
+        const audioPlayer = document.getElementById('audio-player');
+
+        const maxPetals = 50; // Maximum number of petals
+        let currentPetalCount = 0; // Current number of petals displayed
+
+        // Function to play audio
+        function playAudio() {
+            audioPlayer.style.display = 'block'; // Show the iframe
+        }
+
+        // Rose petals creation
+        function createPetal() {
+            if (currentPetalCount < maxPetals) { // Check if the current count is less than the maximum
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = (Math.random() * 100) + 'vw'; // Random horizontal position
+                petalsContainer.appendChild(petal);
+                currentPetalCount++; // Increment the current petal count
+                petal.addEventListener('animationend', () => {
+                    petal.remove();
+                    currentPetalCount--; // Decrement the count when the petal is removed
+                });
+            }
+        }
+
+        function startPetalAnimation() {
+            setInterval(createPetal, 200); // Adjust the interval as needed
+        }
+
+        // Heart floating background
+        function createBackgroundHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            const size = 10 + Math.random() * 25;
+            heart.style.width = heart.style.height = size + 'px';
+            heart.style.opacity = 0.4 + Math.random() * 0.6;
+            petalsContainer.appendChild(heart);
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 15000);
+        }
+
+        setInterval(createBackgroundHeart, 400);
+
+        loginForm.addEventListener('submit', e => {
+            e.preventDefault();
+            if (callsignInput.value.trim().toLowerCase() === 'darling') {
+                errorMsg.style.display = 'none';
+                loginContainer.style.display = 'none';
+                greetingContainer.style.display = 'flex';
+                greetingContainer.focus();
+                startPetalAnimation();
+            } else {
+                errorMsg.textContent = 'Incorrect callsign. Please try again.';
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
